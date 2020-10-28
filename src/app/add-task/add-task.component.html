@@ -1,0 +1,42 @@
+<form [formGroup]="angForm" novalidate>
+    <div class="form-group">
+      <label>message:</label>
+      <input class="form-control" formControlName="message" type="text">
+    </div>
+    <div
+      *ngIf="angForm.controls['message'].invalid && (angForm.controls['message'].dirty || angForm.controls['message'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="angForm.controls['message'].errors.required">
+        message is required
+      </div>
+    </div>
+    <label>due_date:</label>
+
+    <div class="form-group">
+      <mat-form-field >
+        <input  matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="due_date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label>priority:</label>
+      <input type='number' class="form-control" formControlName="priority" >
+    </div>
+
+    <div class="form-group" *ngIf="list && list.users">
+      <label>assigned_to:</label>
+
+      <select class="form-control custom-select" (change)="setassignedTo($event)" formControlName="assigned_to">
+        <option value="" disabled>assigned_to</option>
+        <option *ngFor="let list of list.users" [ngValue]="list.id">{{list.name}}</option>
+     </select>
+    </div>
+
+   
+   
+
+<button type="submit" (click)="createTask()" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-success">
+  Add Task
+</button>
+</form>

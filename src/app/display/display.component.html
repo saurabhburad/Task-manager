@@ -1,0 +1,31 @@
+<div class="container">
+</div>
+<input type="text" [(ngModel)]="searchText" id="myInput" class="myInput" placeholder="Search for .." title="Type in a ">
+
+<table class="table">
+
+    <thead>
+      <tr>
+        <th scope="col">assigned_name</th>
+        <th scope="col">message</th>
+        <th scope="col" *ngIf="searchText===''"><button (click)='sortBasedondate()'>due_date </button></th>
+        <th scope="col" *ngIf="searchText===''"><button (click)='sortBasedonPriorty()'>priority</button></th>
+        <th scope="col" *ngIf="searchText!==''">due_date </th>
+        <th scope="col" *ngIf="searchText!==''">priority</th>
+        <td scope="col">Assign/Delete</td>
+
+      </tr>
+    </thead>
+    <tbody *ngIf="list && list.tasks">
+      <tr *ngFor="let list of list.tasks | searchfilter: 'message' : searchText">
+        <td scope="row">{{list.assigned_name}}</td>
+        <td>{{list.message}}</td>
+        <td>{{list.due_date.substring(0,10)}}</td>
+        <td>{{list.priority}}</td>
+        <td><button [routerLink]="['/edit', list.id,list.assigned_to,list.message,list.due_date,list.priority]" class="btn btn-success">edit</button>&nbsp;&nbsp;<button (click)='deleteTask(list.id)' class="btn btn-danger">delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
