@@ -1,0 +1,17 @@
+﻿<h1>Hi {{currentUser.first_name}}!</h1>
+<p>You're logged in </p>
+<ul>
+    <li *ngFor="let user of users">
+        <h2>ID: {{user.id}}</h2>
+        <p>User Profile</p>
+        <div class="card" style="width:400px">
+          <img class="card-img-top" src="{{user.image_url}}" alt="Card image" style="width:100%">
+          <div class="card-body">
+            <h4 class="card-title">{{user.name}}</h4>
+            <p class="card-text">{{user.users_resolved}}</p>
+            <a  routerLink="/login/{{user.id}}" class="btn btn-primary">view assessment report</a>
+          </div>
+        </div>
+    </li>
+</ul>
+

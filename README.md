@@ -1,6 +1,7 @@
-# Task-manager
-Perform Task like Create, Update, delete, View
+# DeeperSignalsDemo
 
+API FOR LOGIN [Login APi](https://ds-test-api.herokuapp.com/) 
+{ "email":"admin@deepersignals.com", "password":"password" }
 # LIVE DEMO
 
 https://task-manager-advance.herokuapp.com/

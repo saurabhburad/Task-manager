@@ -1,0 +1,42 @@
+.card {
+  transition: height 0.5s ease-in-out;
+  will-change: height;
+}
+
+.card-text {
+  min-width: 300px;
+  min-height: 350px;
+}
+
+h4 {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+.li-content {
+  height: 25px;
+}
+
+.elipp {
+  white-space: nowrap; 
+  width: 100px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+
+
+.loading-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 5;
+}

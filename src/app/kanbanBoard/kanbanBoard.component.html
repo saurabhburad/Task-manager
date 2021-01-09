@@ -1,0 +1,65 @@
+<div class="layout-column justify-content-center align-items-center">
+  <form [formGroup]="angForm" novalidate>
+   
+
+    <section class="layout-row align-items-center justify-content-center">
+      <input id="create-task-input" type="text" class="large"  formControlName="message" 
+      placeholder="New task name" data-test-id="create-task-input"/>
+
+      <input id="create-priority-input" formControlName="priority" type="number" class="large" 
+      placeholder="priority" data-test-id="create-priority-input"/>
+
+      <select *ngIf='list && list.users' class="form-control custom-select" (change)="setassignedTo($event)" formControlName="assigned_to">
+        <option value="" disabled>assigned_to</option>
+        <!-- <span > -->
+        <option *ngFor="let list of list.users" [ngValue]="list.id">{{list.name}}</option>
+        <!-- </span> -->
+     </select>
+
+
+      <button type="submit" class="" data-test-id="create-task-button"
+      (click)="createTask()">Create task</button>
+    </section>
+
+  </form>
+
+    <div *ngIf="tasks && tasks.length" class="mt-50 layout-row">
+      <div class="card outlined ml-20 mt-0" *ngFor="let tasks of stagesTasks;index as i;">
+        <div class="card-text">
+          <h4>{{this.stagesNames[i]}}</h4>
+          <ul class="styled mt-50" [attr.data-test-id]="'stage-'+ i">
+            <li>
+              <div class="li-content layout-row justify-content-between align-items-center">
+                <span class="x-small mx-2">Name</span>
+                <span class="x-small ">Priority/Action</span>
+              </div>
+            </li>
+           
+            <li *ngFor="let task of tasks; index as index;">
+              <div class="li-content layout-row justify-content-between align-items-center">
+                  <span class="elipp x-small mx-2" [attr.data-test-id]="generateTestId(task.name)+ '-name'">{{task.name}}</span>
+                  <div class="icons">
+                  <span class="elipp" [attr.data-test-id]="generateTestId(task.name)+ '-name'">{{task.priority  }} &nbsp;&nbsp;</span>
+
+                    <button class="icon-only x-small mx-2" (click)="backTask(task.name)"  [disabled]="task.stage===0"
+                            [attr.data-test-id]="generateTestId(task.name)+ '-back'">
+                      <i class="material-icons" (click)="backTask(task.name)">arrow_back</i>
+                    </button>
+
+                    <button class="icon-only x-small mx-2" [disabled]="task.stage===3" (click)="forwardTask(task.name)"
+                            [attr.data-test-id]="generateTestId(task.name)+ '-forward'">
+                      <i class="material-icons"  >arrow_forward</i>
+                    </button>
+
+                    <button class="icon-only danger x-small mx-2" (click)="deleteTask(task.name,task.id)"
+                            [attr.data-test-id]="generateTestId(task.name)+ '-delete'">
+                      <i class="material-icons" >&nbsp;delete</i>
+                    </button>
+                  </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
