@@ -4,10 +4,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../_models/user';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private currentUserSubject: BehaviorSubject<User>;
+    private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<User>;
     public 
     constructor(private http: HttpClient) {
@@ -20,13 +21,14 @@ export class AuthenticationService {
     }
 
     login(email, password) {
-        return this.http.post<any>(`https://ds-test-api.herokuapp.com/api/login`, { email, password })
-            .pipe(map(user => {
+       let user = {"first_name":"Admin","last_name":"Deepersignals","role":"Admin","token":"QWRtaW5Vc2Vy"}
+        // return this.http.post<any>(`https://ds-test-api.herokuapp.com/api/login`, { email, password })
+            // .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
-                return user;
-            }));
+                return of(user);
+            // }));
     }
 
     logout() {

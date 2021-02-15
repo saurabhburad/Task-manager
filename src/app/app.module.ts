@@ -23,7 +23,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { MazeGameComponent } from './maze-game/maze-game.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -36,6 +39,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     UserDetailsComponent,
     AdminComponent,
     KanbanBoard,
+    MazeGameComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatGridListModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

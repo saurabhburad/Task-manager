@@ -7,6 +7,7 @@ import { AuthGuard } from '../app/_helpers/auth.guard';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { AdminComponent } from './admin/admin.component';
 import { KanbanBoard } from './kanbanBoard/kanbanBoard.component';
+import { MazeGameComponent } from './maze-game/maze-game.component';
 
 
 
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'login/:id',component: UserDetailsComponent },
   { path: 'admin',component: AdminComponent },
   { path: 'jiraBoard',component: KanbanBoard },
+  { path: 'mazeGame',component: MazeGameComponent },
+
 
 
   // otherwise redirect to home
